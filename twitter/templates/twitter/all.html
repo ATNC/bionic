@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block all %}
+
+
+<p>"Твіти" користувача {{user}} </p>
+{% for twit in twits%}
+<p>{{ twit.text }}</p>
+{% endfor%}
+
+
+{% endblock %}

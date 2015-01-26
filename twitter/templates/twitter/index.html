@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{% block twit %}
+<div class=' large-12 columns'>
+  <form action = "" method='POST'>
+    {% csrf_token %}
+    {% if username%} {#Елементи бачать тільки зареєстровані користувачі#}
+    <input name="text">
+    <input class='button tiny' type="submit">
+    {% else %}
+
+    <h3>Для відправки "твітів" необхідна авторизація.  </h3>
+    <p><a href="/auth/login/" class="button small">Увійти</a> <a href="/auth/register/" class="button tiny">Зареєструватися</a></p>
+    {% endif %}
+
+    <h4>Твіти</h4>
+    {% for twit in pagin %}
+
+    <p><a href='/cmnts/{{twit.twit_from}}/'>{{ twit.twit_from }}</a> : {{twit.text}}<p>
+
+      {% endfor %}
+
+
+  </form>
+<div class='row'>
+  <ul class='pagination'>
+    {% if pagin.has_previous %}
+    <li class='arrow'><a=href'/page/{{ page.previous_page_number }}/'>&laquo;</a></li>
+    {% else %}
+    <li class='arrow unavailable'><a href=''>&laquo;</a></li>
+    {% endif%}
+
+    {% for page in pagin.paginator.page_range %}
+    {% if page == pagin.number %}
+    <li class='current'><a href='/page{{ page}}/'>{{page }}</a></li>
+    {% else %}
+    <li><a href='/page/{{ page }}/'>{{ page }}</a></li>
+    {% endif %}
+    {% endfor %}
+
+    {% if pagin.has_next %}
+    <li class='arrow'><a href='/page/{{ pagin.next_page_number }}/'>&raquo;</a></li>
+    {% else %}
+    <li class='arrow unavailable'><a href=''>&raquo;</a></li>
+    {% endif%}
+  </ul>
+</div>
+</div>
+{% endblock%}
