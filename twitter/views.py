@@ -27,6 +27,7 @@ def twitfilter(request, cur_user):
     args = {}
     args['user'] = cur_user
     args['twits'] = Twit.objects.filter(twit_from=cur_user)
+    #args['date'] = Twit.objects.get(twit_date)
     return render_to_response('twitter/all.html', args)
 
 

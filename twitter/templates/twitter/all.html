@@ -2,9 +2,9 @@
 {% block all %}
 
 
-<p>"Твіти" користувача {{user}} </p>
+<p>"Твіти" користувача <b>{{user}}</b> </p>
 {% for twit in twits%}
-<p>{{ twit.text }}</p>
+<p>{{twit.twit_date}} : {{ twit.text }}</p>
 {% endfor%}
 
 
