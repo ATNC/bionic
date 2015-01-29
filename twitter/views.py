@@ -13,11 +13,11 @@ def index(request, page_number=1):
     args.update(csrf(request))
     if 'text' in request.REQUEST:
         t = Twit(text = request.REQUEST['text'])
-        t.twit_from = auth.get_user(request).username
+        #t.twit_from = auth.get_user(request).username
         t.twit_User = User.objects.get(username = auth.get_user(request).username) #TEST
         t.save()
     all_twits = Twit.objects.all()
-    current_page = Paginator(all_twits, 5)
+    current_page = Paginator(all_twits, 8)
     #args['twits'] = Twit.objects.all()
     args['username'] = auth.get_user(request).username
     args['pagin'] = current_page.page(page_number)

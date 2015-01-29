@@ -16,10 +16,9 @@
     <h4>Твіти</h4>
     {% for twit in pagin %}
 
-    <p><a href='/cmnts/{{twit.twit_from}}/'>{{ twit.twit_from }}</a> : {{twit.text}}<p>
+    <p><a href='/cmnts/{{twit.twit_User}}/'>{{ twit.twit_User }}</a> : {{twit.text}}<p>
 
       {% endfor %}
-
 
   </form>
 <div class='row'>
